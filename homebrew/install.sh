@@ -1,5 +1,10 @@
 #!/bin/sh
 
+script_dir=$(
+    cd "$(dirname "$0")"
+    pwd
+)
+
 install() {
     while read formula; do
         brew install "$formula"
@@ -13,11 +18,11 @@ install() {
 dry_install() {
     while read formula; do
         echo "brew install $formula"
-    done <./formula.txt
+    done <"$script_dir/formula.txt"
 
     while read cask; do
         echo "brew install $cask"
-    done <./cask.txt
+    done <"$script_dir/cask.txt"
 }
 
 if [ "$1" = "dry" ]; then
