@@ -1,0 +1,12 @@
+cargo-benchcmp
+cargo-cache
+cargo-check
+cargo-count
+cargo-deps
+cargo-graph
+cargo-info
+cargo-make
+cargo-modules
+cargo-update
+cargo-watch
+cargo-testify

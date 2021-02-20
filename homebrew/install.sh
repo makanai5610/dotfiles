@@ -1,18 +1,18 @@
 #!/bin/sh
 
 script_dir=$(
-    cd "$(dirname "$0")"
+    cd "$(dirname $0)"
     pwd
 )
 
 install() {
     while read formula; do
         brew install "$formula"
-    done <./formula.txt
+    done <"$script_dir/formula.txt"
 
     while read cask; do
         brew install "$cask"
-    done <./cask.txt
+    done <"$script_dir/cask.txt"
 }
 
 dry_install() {
