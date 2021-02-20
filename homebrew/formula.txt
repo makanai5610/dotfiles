@@ -1,0 +1,17 @@
+bat
+bazel
+docker
+exa
+fd
+font-hackgen
+gh
+ghq
+go
+jq
+peco
+procs
+protobuf
+ripgrep
+sccache
+tree
+zsh-completions
