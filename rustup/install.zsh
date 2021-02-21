@@ -1,8 +1,13 @@
-#!/bin/sh
+#!/usr/local/bin/zsh
 
 script_dir=$(
-    cd "$(dirname $0)"
-    pwd
+    if [ -n "$(readlink $0)" ]; then
+        cd "$(dirname $(readlink $0))"
+        pwd
+    else
+        cd "$(dirname $0)"
+        pwd
+    fi
 )
 
 install() {
