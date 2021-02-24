@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 script_dir=$(
     if [ -n "$(readlink $0)" ]; then

@@ -1,24 +1,16 @@
-#!/usr/local/bin/zsh
-
-script_dir=$(
-    if [ -n "$(readlink $0)" ]; then
-        cd "$(dirname $(readlink $0))"
-        pwd
-    else
-        cd "$(dirname $0)"
-        pwd
-    fi
-)
+#!/bin/zsh
 
 filepathes=(
     "/git"
     "/vim"
+    "/p10k"
     ""
 )
 
 filenames=(
     ".gitconfig"
     ".vimrc"
+    ".p10k.zsh"
     ".zshrc"
 )
 
@@ -28,6 +20,6 @@ if test $#filepathes -ne $#filenames; then
 fi
 
 for i in $(seq 1 $#filepathes); do
-    echo "$HOME/${filenames[$i]} -> $script_dir/${filepathes[$i]}/${filenames[$i]}"
-    ln -si "$script_dir/${filepathes[$i]}/${filenames[$i]}" "$HOME"
+    echo "$HOME/${filenames[$i]} -> $PWD${filepathes[$i]}/${filenames[$i]}"
+    ln -si "$PWD${filepathes[$i]}/${filenames[$i]}" "$HOME"
 done

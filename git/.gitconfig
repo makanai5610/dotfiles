@@ -1,17 +1,17 @@
 [core]
-	excludesfile = /Users/takumikaribe/.gitignore_global
+excludesfile = ~/.gitignore_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+trustExitCode = true
 [user]
-	name = makanai5610
-	email = takumi.k.5610@gmail.com
+name = makanai5610
+email = takumi.k.5610@gmail.com
 [commit]
-	template = /Users/takumikaribe/.stCommitMsg
+template = ~/.stCommitMsg
 [pull]
-	rebase = false
+rebase = false
 [ghq]
-	root = /Users/takumikaribe/develop/ghq
+root = ~/develop/ghq
