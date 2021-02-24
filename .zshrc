@@ -10,7 +10,7 @@ fi
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 
 script_dir=$(
-    if [ "$0" = "-zsh" ]; then
+    if [ "$0" = "-zsh" -o "$0" = "/bin/zsh" ]; then
         cd "$(dirname $(readlink $HOME/.zshrc))"
         pwd
     elif [ -n "$(readlink $0)" ]; then
