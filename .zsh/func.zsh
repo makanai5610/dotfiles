@@ -92,18 +92,14 @@ gp() {
 }
 
 vimw() {
-    local cancel=false
-
     local dir=$(gp)
-    if [ -z "$dir" ]; then cancel=true; fi
+    if [ -z "$dir" ]; then return; fi
 
-    while [ -d $dir -a $cancel = false ]; do
+    while [ -d $dir ]; do
         /bin/ls -a -1 $dir | peco | read s
-        if [ -z "$s" ]; then cancel=true; fi
+        if [ -z "$s" ]; then return; fi
         dir="$dir/$s"
     done
-
-    if $cancel; then return; fi
 
     vim $dir
 }
