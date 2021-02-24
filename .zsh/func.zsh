@@ -91,7 +91,7 @@ gp() {
     ghq list --full-path | peco
 }
 
-vimg() {
+vimw() {
     local cancel=false
 
     local dir=$(gp)
