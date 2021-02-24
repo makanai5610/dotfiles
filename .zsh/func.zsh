@@ -86,3 +86,24 @@ watch() {
         echo "should input number. got $1."
     fi
 }
+
+gp() {
+    ghq list --full-path | peco
+}
+
+vimg() {
+    local cancel=false
+
+    local dir=$(gp)
+    if [ -z "$dir" ]; then cancel=true; fi
+
+    while [ -d $dir -a $cancel = false ]; do
+        /bin/ls -a -1 $dir | peco | read s
+        if [ -z "$s" ]; then cancel=true; fi
+        dir="$dir/$s"
+    done
+
+    if $cancel; then return; fi
+
+    vim $dir
+}
