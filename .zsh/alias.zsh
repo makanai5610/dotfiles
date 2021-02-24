@@ -13,5 +13,12 @@ alias vim='nvim'
 #alias top='bandwhich'
 #alias top='btm'
 
+alias yq='yq eval -C'
+
 alias gorepl='gore'
 alias rustrepl='evcxr'
+
+alias k='kubectl'
+alias kex='k exec'
+alias kg='k get'
+alias ked='k edit'
