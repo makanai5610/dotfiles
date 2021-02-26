@@ -4,12 +4,12 @@ lg() {
     la | grep $1
 }
 
-kc-stg() {
+kc_stg() {
     export KUBECONFIG=$HOME/.kube/config/staging.yml
     echo "export KUBECONFIG=$KUBECONFIG"
 }
 
-kc-prd() {
+kc_prd() {
     export KUBECONFIG=$HOME/.kube/config/production.yml
     echo "export KUBECONFIG=$KUBECONFIG"
 }
@@ -49,10 +49,21 @@ cdg() {
     fi
 }
 
-ghq_updates() {
+ghq_update() {
     for repo in $(ghq list); do
         ghq get --update --parallel --silent $repo
     done
+}
+
+ghq_master() {
+	current=$PWD
+	for repo in $(ghq list --full-path); do
+		cd $repo
+		echo "$repo:"
+		git switch master
+		echo
+	done
+	cd $current
 }
 
 codeg() {
@@ -87,12 +98,8 @@ watch() {
     fi
 }
 
-gp() {
-    ghq list --full-path | peco
-}
-
 vimw() {
-    local dir=$(gp)
+    local dir=$(ghq list --full-path | peco)
     if [ -z "$dir" ]; then return; fi
 
     while [ -d $dir ]; do
