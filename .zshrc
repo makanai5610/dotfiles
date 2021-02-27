@@ -31,3 +31,4 @@ source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.z
 source $script_dir/.zsh/alias.zsh
 source $script_dir/.zsh/env.zsh
 source $script_dir/.zsh/func.zsh
+source $script_dir/colorize.zsh
