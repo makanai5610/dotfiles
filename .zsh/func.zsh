@@ -56,14 +56,14 @@ ghq_update() {
 }
 
 ghq_master() {
-	current=$PWD
-	for repo in $(ghq list --full-path); do
-		cd $repo
-		echo "$repo:"
-		git switch master
-		echo
-	done
-	cd $current
+    current=$PWD
+    for repo in $(ghq list --full-path); do
+        cd $repo
+        echo "$repo:"
+        git switch master
+        echo
+    done
+    cd $current
 }
 
 codeg() {
@@ -109,4 +109,9 @@ vimw() {
     done
 
     vim $dir
+}
+
+skim() {
+    local book_name=$(/bin/ls ~/books | peco)
+    open -na "Skim.app" "$HOME/books/$book_name"
 }
