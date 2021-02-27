@@ -43,22 +43,26 @@ BLINK=5
 REVERSE_VIDEO=7
 INVISIBLE_TEXT=8
 
-function reset_colorize() {
-    echo -en ${COLOR_OFF}
+function reset_style() {
+    echo -en ${STYLE_OFF}
 }
 
 function echo_success() {
-    echo -en "${ESC}${FONT_GREEN}${ESC_END}$1\n${STYLE_END}"
+    echo -en "${ESC}${FONT_GREEN}${ESC_END}$1${STYLE_END}"
+    reset_style
 }
 
 function echo_failure() {
-    echo -en "${ESC}${FONT_RED}${ESC_END}$1\n${STYLE_END}"
+    echo -en "${ESC}${FONT_RED}${ESC_END}$1${STYLE_END}"
+    reset_style
 }
 
 function echo_processing() {
-    echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}$1\n${STYLE_END}"
+    echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}$1${STYLE_END}"
+    reset_style
 }
 
 function echo_note() {
-    echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}$1\n${STYLE_END}"
+    echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}$1${STYLE_END}"
+    reset_style
 }

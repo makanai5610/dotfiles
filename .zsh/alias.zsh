@@ -1,11 +1,13 @@
 #!/bin/zsh
 
+alias ..='cd ..'
 alias cat='bat'
 alias l='exa -lbghHimSuU@ --time-style long-iso --git -s Name'
 alias ls='exa -lbghHimSuU@ --time-style long-iso --git -s Name'
 alias ll='exa -lbghHimSuU@ --time-style long-iso --git -s Name'
 alias la='exa -labghHimSuU@ --time-style long-iso --git -s Name'
 alias grep='rg'
+alias lg='la | grep $1'
 alias find='fd'
 #alias ps='procs'
 alias vim='nvim'
