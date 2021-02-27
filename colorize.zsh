@@ -52,9 +52,17 @@ function echo_success() {
     reset_style
 }
 
+function set_style_success() {
+    echo -en "${ESC}${FONT_GREEN}${ESC_END}${STYLE_END}"
+}
+
 function echo_failure() {
     echo -en "${ESC}${FONT_RED}${ESC_END}$1${STYLE_END}"
     reset_style
+}
+
+function set_style_failure() {
+    echo -en "${ESC}${FONT_RED}${ESC_END}${STYLE_END}"
 }
 
 function echo_processing() {
@@ -62,7 +70,15 @@ function echo_processing() {
     reset_style
 }
 
+function set_style_processing() {
+    echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}${STYLE_END}"
+}
+
 function echo_note() {
     echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}$1${STYLE_END}"
     reset_style
+}
+
+function set_style_note() {
+    echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}${STYLE_END}"
 }

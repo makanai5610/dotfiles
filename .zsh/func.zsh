@@ -1,13 +1,23 @@
 #!/bin/zsh
 
 function kc_stg() {
-    export KUBECONFIG=$HOME/.kube/config/staging.yml
-    echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    local config=$HOME/.kube/config/staging.yml
+    if [ ! -a config ]; then
+        echo_failure "$config is not found.\n"
+    else
+        export KUBECONFIG=$config
+        echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    fi
 }
 
 function kc_prd() {
-    export KUBECONFIG=$HOME/.kube/config/production.yml
-    echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    local config=$HOME/.kube/config/production.yml
+    if [ ! -a config ]; then
+        echo_failure "$config is not found.\n"
+    else
+        export KUBECONFIG=$config
+        echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    fi
 }
 
 function ksh() {
@@ -45,13 +55,13 @@ function ghq_update() {
 }
 
 function ghq_master() {
-    current=$PWD
+    local current=$PWD
     for repo in $(ghq list --full-path); do
         cd $repo
         echo_success 'pull '
         echo "$repo"
         git switch master
-        echo '\n'
+        echo
     done
     cd $current
 }
