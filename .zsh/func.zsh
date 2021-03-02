@@ -208,3 +208,8 @@ function intellij() {
 function skim() {
     open -na "Skim.app" "$HOME/books/$(/bin/ls ~/books | peco)"
 }
+
+function notion() {
+    open -na "Notion.app"
+}
+
