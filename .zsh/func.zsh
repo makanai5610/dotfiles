@@ -93,7 +93,7 @@ function cdg() {
 
     echo_success "selected "
     reset_style
-    echo "$dir"
+    echo "$repo"
 
     cd $repo
 }
