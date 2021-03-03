@@ -48,25 +48,39 @@ function ports() {
     fi
 }
 
+function ghq_fetch() {
+    local current_directory=$PWD
+    for repo in $(ghq list --full-path); do
+        cd $repo
+        echo_success 'fetch '
+        echo "$repo"
+        git fetch --prune
+    done
+    cd $current_directory
+}
+
 function ghq_update() {
     for repo in $(ghq list); do
         ghq get --update --parallel --silent $repo
     done
 }
 
-function ghq_master() {
-    local current=$PWD
+function ghq_default() {
+    local current_directory=$PWD
     for repo in $(ghq list --full-path); do
-        echo_success 'pull '
-        echo "$repo"
-
         cd $repo
-        git switch master
-
-        echo
+        echo_success 'switch '
+        echo "$repo"
+        local current_branch_name=$(git branch --show-current)
+        local default_branch_name=$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')
+        if [ "$current_branch_name" = "$default_branch_name" ]; then
+            echo "    already on '$default_branch_name'"
+        else
+            echo "    $current_branch_name -> $default_branch_name"
+            git switch $default_branch_name
+        fi
     done
-
-    cd $current
+    cd $current_directory
 }
 
 function cdg() {
@@ -212,4 +226,3 @@ function skim() {
 function notion() {
     open -na "Notion.app"
 }
-
