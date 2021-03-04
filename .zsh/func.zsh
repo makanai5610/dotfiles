@@ -2,21 +2,21 @@
 
 function kc_stg() {
     local config=$HOME/.kube/config/staging.yml
-    if [ ! -a config ]; then
-        echo_failure "$config is not found.\n"
-    else
+    if [ -e $config ]; then
         export KUBECONFIG=$config
         echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    else
+        echo_failure "$config is not found.\n"
     fi
 }
 
 function kc_prd() {
     local config=$HOME/.kube/config/production.yml
-    if [ ! -a config ]; then
-        echo_failure "$config is not found.\n"
-    else
+    if [ -e $config ]; then
         export KUBECONFIG=$config
         echo_success "export KUBECONFIG=$KUBECONFIG\n"
+    else
+        echo_failure "$config is not found.\n"
     fi
 }
 
