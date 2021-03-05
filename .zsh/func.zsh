@@ -61,7 +61,7 @@ function ghq_fetch() {
 
 function ghq_update() {
     for repo in $(ghq list); do
-        ghq get --update --parallel --silent $repo
+        ghq get --update --parallel $repo
     done
 }
 
