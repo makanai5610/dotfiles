@@ -25,14 +25,29 @@ local to_file_pathes=(
 )
 
 if [ $#file_names -ne $#from_file_pathes -o $#from_file_pathes -ne $#to_file_pathes ]; then
-    echo "file_names, from_file_pathes and to_file_pathes count is not equal each other."
-    echo "file_names=$#file_names, from_file_pathes=$#from_file_pathes, to_file_pathes=$#to_file_pathes"
-    exit 1
+    echo_failure "file_names, from_file_pathes and to_file_pathes count is not equal each other."
+    echo_failure "file_names=$#file_names, from_file_pathes=$#from_file_pathes, to_file_pathes=$#to_file_pathes"
+    return 1
 fi
 
-local work_dir=$(git rev-parse --show-toplevel)
+local script_dir=''
+if [ -n "$(readlink $0)" ]; then
+    script_dir="$(dirname $(readlink $0))"
+else
+    script_dir="$(dirname $0)"
+fi
+if [ -z "$script_dir" ]; then
+    echo_failure "script_dir is empty."
+    return 1
+fi
 
+pushd "$script_dir" >/dev/null
+local work_dir=$(git rev-parse --show-toplevel)
+source "$work_dir/colorize.zsh"
 for i in $(seq 1 $#from_file_pathes); do
+    echo_success 'link '
+    reset_style
     echo "${to_file_pathes[$i]}/${file_names[$i]} -> $work_dir${from_file_pathes[$i]}/${file_names[$i]}"
     ln -si "$work_dir${from_file_pathes[$i]}/${file_names[$i]}" "${to_file_pathes[$i]}"
 done
+popd >/dev/null

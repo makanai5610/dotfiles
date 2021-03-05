@@ -3,7 +3,7 @@
 # constants
 ESC='\e['
 ESC_END='m'
-STYLE_OFF=${ESC}${ESC_END}
+STYLE_END=${ESC}${ESC_END}
 
 FONT_COLOR=3
 BACKGROUND_COLOR=4
@@ -44,41 +44,37 @@ REVERSE_VIDEO=7
 INVISIBLE_TEXT=8
 
 function reset_style() {
-    echo -en ${STYLE_OFF}
+    echo -en ${STYLE_END}
 }
 
 function echo_success() {
     echo -en "${ESC}${FONT_GREEN}${ESC_END}$1${STYLE_END}"
-    reset_style
 }
 
 function set_style_success() {
-    echo -en "${ESC}${FONT_GREEN}${ESC_END}${STYLE_END}"
+    echo -en "${ESC}${FONT_GREEN}${ESC_END}"
 }
 
 function echo_failure() {
     echo -en "${ESC}${FONT_RED}${ESC_END}$1${STYLE_END}"
-    reset_style
 }
 
 function set_style_failure() {
-    echo -en "${ESC}${FONT_RED}${ESC_END}${STYLE_END}"
+    echo -en "${ESC}${FONT_RED}${ESC_END}"
 }
 
 function echo_processing() {
     echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}$1${STYLE_END}"
-    reset_style
 }
 
 function set_style_processing() {
-    echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}${STYLE_END}"
+    echo -en "${ESC}${FONT_WHITE};${BLINK}${ESC_END}"
 }
 
 function echo_note() {
     echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}$1${STYLE_END}"
-    reset_style
 }
 
 function set_style_note() {
-    echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}${STYLE_END}"
+    echo -en "${ESC}${FONT_WHITE};${BOLD}${ESC_END}"
 }

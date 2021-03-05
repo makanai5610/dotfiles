@@ -9,26 +9,30 @@ fi
 
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 
-script_dir=$(
-    if [ "$0" = "-zsh" -o "$0" = "zsh" -o "$0" = "/bin/zsh" ]; then
-        cd "$(dirname $(readlink $HOME/.zshrc))"
-        pwd
-    elif [ -n "$(readlink $0)" ]; then
-        cd "$(dirname $(readlink $0))"
-        pwd
-    else
-        cd "$(dirname $0)"
-        pwd
-    fi
-)
-
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
-source $script_dir/.zsh/alias.zsh
-source $script_dir/.zsh/env.zsh
-source $script_dir/.zsh/func.zsh
-source $script_dir/colorize.zsh
+local script_dir=''
+if [ "$0" = "-zsh" -o "$0" = "zsh" -o "$0" = "/bin/zsh" ]; then
+    script_dir="$(dirname $(readlink $HOME/.zshrc))"
+elif [ -n "$(readlink $0)" ]; then
+    script_dir="$(dirname $(readlink $0))"
+else
+    script_dir="$(dirname $0)"
+fi
+if [ -z "$script_dir" ]; then
+    local message='script_dir is empty.'
+    echo -e "\e[31m$message\e[m"
+    return 1
+fi
+
+pushd "$script_dir" >/dev/null
+source $PWD/colorize.zsh
+source $PWD/.zsh/env.zsh
+source $PWD/.zsh/alias.zsh
+source $PWD/.zsh/func.zsh
+popd >/dev/null

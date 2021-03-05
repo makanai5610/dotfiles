@@ -1,29 +1,35 @@
 #!/bin/zsh
 
-script_dir=$(
-    if [ -n "$(readlink $0)" ]; then
-        cd "$(dirname $(readlink $0))"
-        pwd
+function install() {
+    if [ "$1" = "dry" ]; then
+        while read component; do
+            echo "rustup component add $component"
+        done <"$PWD/component.txt"
     else
-        cd "$(dirname $0)"
-        pwd
+        while read component; do
+            rustup component add "$component"
+        done <"$PWD/component.txt"
     fi
-)
-
-install() {
-    while read component; do
-        rustup component add "$component"
-    done <"$script_dir/component.txt"
 }
 
-dry_install() {
-    while read component; do
-        echo "rustup component add $component"
-    done <"$script_dir/component.txt"
-}
-
-if [ "$1" = "dry" ]; then
-    dry_install
-else
-    install
+if [ "$(
+    which rustup
+    $?
+)" != 0 ]; then
+    curl https://sh.rustup.rs -sSf | sh
 fi
+
+local script_dir=''
+if [ -n "$(readlink $0)" ]; then
+    script_dir="$(dirname $(readlink $0))"
+else
+    script_dir="$(dirname $0)"
+fi
+if [ -z "$script_dir" ]; then
+    echo_failure "script_dir is empty."
+    return 1
+fi
+
+pushd "$script_dir" >/dev/null
+install
+popd >/dev/null

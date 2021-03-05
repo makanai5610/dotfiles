@@ -1,5 +1,16 @@
 #!/bin/zsh
 
+function link_dotfiles() {
+    local repo=$(ghq list --full-path | grep makanai5610/dotfiles)
+    local hit="$(echo $repo | wc -l | awk '{print $1}')"
+    if [ "$hit" = 0 ]; then
+        echo_failure "makanai/dotfiles is not found.\n"
+    elif [ "$hit" != 1 ]; then
+        echo_failure "makanai/dotfiles should be unique.\n"
+    fi
+    $repo/link.zsh
+}
+
 function kc_stg() {
     local config=$HOME/.kube/config/staging.yml
     if [ -e $config ]; then
