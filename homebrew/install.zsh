@@ -5,7 +5,6 @@ function install() {
         while read formula; do
             echo "brew install $formula"
         done <"$PWD/formula.txt"
-
         while read cask; do
             echo "brew install $cask"
         done <"$PWD/cask.txt"
@@ -13,7 +12,6 @@ function install() {
         while read formula; do
             brew install "$formula"
         done <"$PWD/formula.txt"
-
         while read cask; do
             brew install "$cask"
         done <"$PWD/cask.txt"
@@ -32,5 +30,8 @@ if [ -z "$script_dir" ]; then
 fi
 
 pushd "$script_dir" >/dev/null
-install
+
+# if $1 is 'dry', dry run.
+install $1
+
 popd

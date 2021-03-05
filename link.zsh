@@ -24,7 +24,7 @@ local to_file_pathes=(
     "$HOME/.config/karabiner/assets/complex_modifications"
 )
 
-if [ $#file_names -ne $#from_file_pathes -o $#from_file_pathes -ne $#to_file_pathes ]; then
+if [ $#file_names != $#from_file_pathes -o $#from_file_pathes != $#to_file_pathes ]; then
     echo_failure "file_names, from_file_pathes and to_file_pathes count is not equal each other."
     echo_failure "file_names=$#file_names, from_file_pathes=$#from_file_pathes, to_file_pathes=$#to_file_pathes"
     return 1
@@ -42,12 +42,15 @@ if [ -z "$script_dir" ]; then
 fi
 
 pushd "$script_dir" >/dev/null
+
 local work_dir=$(git rev-parse --show-toplevel)
 source "$work_dir/colorize.zsh"
+
 for i in $(seq 1 $#from_file_pathes); do
     echo_success 'link '
     reset_style
     echo "${to_file_pathes[$i]}/${file_names[$i]} -> $work_dir${from_file_pathes[$i]}/${file_names[$i]}"
     ln -si "$work_dir${from_file_pathes[$i]}/${file_names[$i]}" "${to_file_pathes[$i]}"
 done
+
 popd >/dev/null

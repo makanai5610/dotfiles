@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+function update_all() {
+    brew upgrade
+    brew cleanup
+    rustup update
+}
+
 function link_dotfiles() {
     local repo=$(ghq list --full-path | grep makanai5610/dotfiles)
     local hit="$(echo $repo | wc -l | awk '{print $1}')"

@@ -13,9 +13,12 @@ if [ -z "$script_dir" ]; then
 fi
 
 pushd "$script_dir" >/dev/null
+
 local work_dir=$(git rev-parse --show-toplevel)
 source "$work_dir/colorize.zsh"
+
+# if $1 is 'dry', dry run.
 $PWD/homebrew/install.zsh $1
-$PWD/rustup/install.zsh $1
-$PWD/cargo/install.zsh $1
+$PWD/rust/install.zsh $1
+
 popd >/dev/null

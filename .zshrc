@@ -31,8 +31,10 @@ if [ -z "$script_dir" ]; then
 fi
 
 pushd "$script_dir" >/dev/null
+
 source $PWD/colorize.zsh
 source $PWD/.zsh/env.zsh
 source $PWD/.zsh/alias.zsh
 source $PWD/.zsh/func.zsh
+
 popd >/dev/null
