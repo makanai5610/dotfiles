@@ -12,7 +12,7 @@ local from_file_pathes=(
     "/git"
     "/vim"
     "/p10k"
-    ""
+    "/.zsh"
     "/karabiner"
 )
 
@@ -44,7 +44,7 @@ fi
 pushd "$script_dir" >/dev/null
 
 local work_dir=$(git rev-parse --show-toplevel)
-source "$work_dir/colorize.zsh"
+source "$work_dir/util/colorize.zsh"
 
 for i in $(seq 1 $#from_file_pathes); do
     echo_success 'link '

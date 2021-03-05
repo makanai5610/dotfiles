@@ -32,9 +32,11 @@ fi
 
 pushd "$script_dir" >/dev/null
 
-source $PWD/colorize.zsh
-source $PWD/.zsh/env.zsh
-source $PWD/.zsh/alias.zsh
-source $PWD/.zsh/func.zsh
+local work_dir=$(git rev-parse --show-toplevel)
+source $work_dir/util/colorize.zsh
+
+source $PWD/env.zsh
+source $PWD/alias.zsh
+source $PWD/func.zsh
 
 popd >/dev/null

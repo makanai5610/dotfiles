@@ -15,7 +15,7 @@ fi
 pushd "$script_dir" >/dev/null
 
 local work_dir=$(git rev-parse --show-toplevel)
-source "$work_dir/colorize.zsh"
+source "$work_dir/util/colorize.zsh"
 
 # if $1 is 'dry', dry run.
 $PWD/homebrew/install.zsh $1
