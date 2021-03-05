@@ -12,7 +12,7 @@ local from_file_pathes=(
     "/git"
     "/vim"
     "/p10k"
-    "/.zsh"
+    "/zsh"
     "/karabiner"
 )
 
