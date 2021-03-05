@@ -22,7 +22,7 @@ function kc_prd() {
 
 function ksh() {
     if [ $# -eq 1 ]; then
-        ke -it -n $1 $(kg pod -n $1 | sed -n 2p | awk '{print $1}') -- sh
+        kex -it -n $1 $(kg pod -n $1 | sed -n 2p | awk '{print $1}') -- sh
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
@@ -31,7 +31,7 @@ function ksh() {
 
 function krc() {
     if [ $# -eq 1 ]; then
-        ke -it -n $1 $(kg pod -n $1 | sed -n 2p | awk '{print $1}') -- bin/rails c
+        kex -it -n $1 $(kg pod -n $1 | sed -n 2p | awk '{print $1}') -- bin/rails c
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
