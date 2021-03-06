@@ -4,6 +4,7 @@ function update_all() {
     brew upgrade
     brew cleanup
     rustup update
+    ghq_update
 }
 
 function link_dotfiles() {
