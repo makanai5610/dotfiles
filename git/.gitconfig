@@ -7,7 +7,7 @@ path =
 cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 trustExitCode = true
 [user]
-name = makanai5610
+name = karrybit
 email = takumi.k.5610@gmail.com
 [commit]
 template = ~/.stCommitMsg
