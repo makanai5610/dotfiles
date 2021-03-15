@@ -8,7 +8,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-13.0.1.jdk
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-14.0.2.jdk/Contents/Home
 export PATH=$PATH:$JAVA_HOME/bin
 
 # rust
