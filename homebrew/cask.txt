@@ -1,4 +1,4 @@
-1password
+gpassword
 discord
 docker
 font-hackgen
@@ -16,3 +16,4 @@ skitch
 slack
 sourcetree
 visual-studio-code
+postman
