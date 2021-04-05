@@ -9,7 +9,7 @@ function update_all() {
 }
 
 function link_dotfiles() {
-    local repo=$(ghq list --full-path | grep makanai5610/dotfiles)
+    local repo=$(ghq list --full-path | grep karrybit/dotfiles)
     local hit="$(echo $repo | wc -l | awk '{print $1}')"
     if [ "$hit" = 0 ]; then
         echo_failure "makanai/dotfiles is not found.\n"
