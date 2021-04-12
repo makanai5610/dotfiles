@@ -12,9 +12,12 @@ function link_dotfiles() {
     local repo=$(ghq list --full-path | grep karrybit/dotfiles)
     local hit="$(echo $repo | wc -l | awk '{print $1}')"
     if [ "$hit" = 0 ]; then
-        echo_failure "makanai/dotfiles is not found.\n"
-    elif [ "$hit" != 1 ]; then
-        echo_failure "makanai/dotfiles should be unique.\n"
+        echo_failure "karrybit/dotfiles is not found.\n"
+	return
+    fi
+    if [ "$hit" != 1 ]; then
+        echo_failure "karrybit/dotfiles should be unique.\n"
+	return
     fi
     $repo/link.zsh
 }
