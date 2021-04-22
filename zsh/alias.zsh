@@ -25,5 +25,3 @@ alias k='kubectl'
 alias kex='k exec'
 alias kg='k get'
 alias ked='k edit'
-alias kgnode="kg node | awk 'NR>1{print \$0}' | peco | awk '{print \$1}'"
-alias kgpod="kg pod | awk 'NR>1{print \$0}' | peco | awk '{print \$1}'"
