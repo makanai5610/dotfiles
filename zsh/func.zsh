@@ -13,11 +13,11 @@ function link_dotfiles() {
     local hit="$(echo $repo | wc -l | awk '{print $1}')"
     if [ "$hit" = 0 ]; then
         echo_failure "karrybit/dotfiles is not found.\n"
-	return
+        return
     fi
     if [ "$hit" != 1 ]; then
         echo_failure "karrybit/dotfiles should be unique.\n"
-	return
+        return
     fi
     $repo/link.zsh
 }
@@ -234,15 +234,45 @@ function watch() {
 }
 
 function rubymine() {
-    open -na 'RubyMine.app' $(ghq list --full-path | peco)
+    local repo=$(ghq list --full-path | peco)
+    if [ -z "$repo" ]; then
+        echo_failure "canceled\n"
+        reset_style
+        return
+    fi
+
+    echo_success "selected "
+    reset_style
+    echo "$repo"
+    open -na 'RubyMine.app' $repo
 }
 
 function intellij() {
-    open -na 'IntelliJ IDEA CE.app' $(ghq list --full-path | peco)
+    local repo=$(ghq list --full-path | peco)
+    if [ -z "$repo" ]; then
+        echo_failure "canceled\n"
+        reset_style
+        return
+    fi
+
+    echo_success "selected "
+    reset_style
+    echo "$repo"
+    open -na 'IntelliJ IDEA CE.app' $repo
 }
 
 function skim() {
-    open -na "Skim.app" "$HOME/books/$(/bin/ls ~/books | peco)"
+    local book=$(/bin/ls ~/books | peco)
+    if [ -z "$book" ]; then
+        echo_failure "canceled\n"
+        reset_style
+        return
+    fi
+
+    echo_success "selected "
+    reset_style
+    echo "$book"
+    open -na "Skim.app" "$HOME/books/$book"
 }
 
 function notion() {
