@@ -21,5 +21,6 @@ export RUSTC_WRAPPER=$(which sccache)
     eval "$(rbenv init -)"
 
 # node
-export PATH=$PATH:$HOME/.nodenv/bin
-eval "$(nodenv init -)"
+[[ -d ~/.nodenv ]] &&
+    export PATH=$PATH:$HOME/.nodenv/bin &&
+    eval "$(nodenv init -)"

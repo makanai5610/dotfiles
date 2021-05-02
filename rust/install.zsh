@@ -5,7 +5,7 @@ function install_rustup() {
         echo 'curl https://sh.rustup.rs -sSf | sh'
     else
         which rustup
-        if [ "$$?" != 0 ]; then
+        if [ "$?" != 0 ]; then
             curl https://sh.rustup.rs -sSf | sh
         fi
     fi

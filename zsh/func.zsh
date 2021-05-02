@@ -1,8 +1,21 @@
 #!/bin/zsh
 
 function update_all() {
-    brew upgrade
-    brew cleanup
+    case "${OSTYPE}" in
+    darwin*)
+        brew upgrade
+        brew cleanup
+        break
+        ;;
+    linux*)
+        sudo apt update
+        sudo apt upgrade
+        sudo apt autoremove
+        sudo apt clean
+        break
+        ;;
+    esac
+
     rustup update
     ghq_fetch
     ghq_update
