@@ -24,3 +24,7 @@ export RUSTC_WRAPPER=$(which sccache)
 [[ -d ~/.nodenv ]] &&
     export PATH=$PATH:$HOME/.nodenv/bin &&
     eval "$(nodenv init -)"
+
+# ghq
+export GHQ_ROOT=$(ghq root)
+export DOTFILES_PATH=$(ghq list --full-path | grep karrybit/dotfiles)

@@ -7,6 +7,6 @@ cargo-graph
 cargo-info
 cargo-make
 cargo-modules
+cargo-testify
 cargo-update
 cargo-watch
-cargo-testify

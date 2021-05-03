@@ -30,27 +30,9 @@ if [ $#file_names != $#from_file_pathes -o $#from_file_pathes != $#to_file_pathe
     return 1
 fi
 
-local script_dir=''
-if [ -n "$(readlink $0)" ]; then
-    script_dir="$(dirname $(readlink $0))"
-else
-    script_dir="$(dirname $0)"
-fi
-if [ -z "$script_dir" ]; then
-    echo_failure "script_dir is empty."
-    return 1
-fi
-
-pushd "$script_dir" >/dev/null
-
-local work_dir=$(git rev-parse --show-toplevel)
-source "$work_dir/util/colorize.zsh"
-
 for i in $(seq 1 $#from_file_pathes); do
     echo_success 'link '
     reset_style
-    echo "${to_file_pathes[$i]}/${file_names[$i]} -> $work_dir${from_file_pathes[$i]}/${file_names[$i]}"
-    ln -si "$work_dir${from_file_pathes[$i]}/${file_names[$i]}" "${to_file_pathes[$i]}"
+    echo "${to_file_pathes[$i]}/${file_names[$i]} -> $DOTFILES_PATH${from_file_pathes[$i]}/${file_names[$i]}"
+    ln -si "$DOTFILES_PATH${from_file_pathes[$i]}/${file_names[$i]}" "${to_file_pathes[$i]}"
 done
-
-popd >/dev/null
