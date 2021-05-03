@@ -5,6 +5,8 @@ function update_all() {
     darwin*)
         brew upgrade
         brew cleanup
+        brew list --formula -1 >$DOTFILES_PATH/homebrew/formula.txt
+        brew list --cask -1 >$DOTFILES_PATH/homebrew/cask.txt
         ;;
     linux*)
         sudo apt update
@@ -17,49 +19,7 @@ function update_all() {
     rustup update
     ghq_fetch
     ghq_update
-}
-
-function brew_install() {
-    brew install $1
-    if [ "$?" != 0 ]; then
-        return
-    fi
-
-    case "${OSTYPE}" in
-    darwin*)
-        echo $1 >>$DOTFILES_PATH/homebrew/formula.txt
-        sed '/^$/d' $DOTFILES_PATH/homebrew/formula.txt | sort | uniq >$DOTFILES_PATH/homebrew/formula.txt.bak
-        rm $DOTFILES_PATH/homebrew/formula.txt
-        mv $DOTFILES_PATH/homebrew/formula.txt.bak $DOTFILES_PATH/homebrew/formula.txt
-        ;;
-    *)
-        echo_failure "brew only"
-        ;;
-    esac
-}
-
-function rustup_component_add() {
-    rustup component add $1
-    if [ "$?" != 0 ]; then
-        return
-    fi
-
-    echo $1 >>$DOTFILES_PATH/rust/component.txt
-    sed '/^$/d' $DOTFILES_PATH/rust/component.txt | sort | uniq >$DOTFILES_PATH/rust/component.txt.bak
-    rm $DOTFILES_PATH/rust/component.txt
-    mv $DOTFILES_PATH/rust/component.txt.bak $DOTFILES_PATH/rust/component.txt
-}
-
-function cargo_install() {
-    cargo install $1
-    if [ "$?" != 0 ]; then
-        return
-    fi
-
-    echo $1 >>$DOTFILES_PATH/rust/package.txt
-    sed '/^$/d' $DOTFILES_PATH/rust/package.txt | sort | uniq >$DOTFILES_PATH/rust/package.txt.bak
-    rm $DOTFILES_PATH/rust/package.txt
-    mv $DOTFILES_PATH/rust/package.txt.bak $DOTFILES_PATH/rust/package.txt
+    ghq list >$DOTFILES_PATH/ghq/repo.txt
 }
 
 function link_dotfiles() {
