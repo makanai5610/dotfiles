@@ -42,7 +42,6 @@ github.com/hashicorp/raft
 github.com/hyperium/hyper
 github.com/istio/istio
 github.com/isucon/isucon10-qualify
-github.com/karrybit/auth_sandbox
 github.com/karrybit/dotfiles
 github.com/karrybit/go-std-package
 github.com/karrybit/gopherdojo-studyroom
@@ -72,9 +71,6 @@ github.com/rust-lang/rust
 github.com/seanmonstar/reqwest
 github.com/serde-rs/json
 github.com/serde-rs/serde
-github.com/takumikaribe/goro
-github.com/takumikaribe/hello-actix
-github.com/takumikaribe/minirdb
 github.com/tikv/tikv
 github.com/tokio-rs/tokio
 github.com/uber-go/zap
