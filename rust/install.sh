@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 function install_rustup() {
     if [ "$1" = 'dry' ]; then

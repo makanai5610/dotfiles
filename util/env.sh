@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # protobuf
 export PATH=$PATH:/usr/local/opt/protobuf/bin

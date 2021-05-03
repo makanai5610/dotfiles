@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/bin/bash
 
-local file_names=(
+file_names=(
     ".gitconfig"
     ".vimrc"
     ".p10k.zsh"
@@ -8,7 +8,7 @@ local file_names=(
     "move_word.json"
 )
 
-local from_file_pathes=(
+from_file_pathes=(
     "/git"
     "/vim"
     "/p10k"
@@ -16,7 +16,7 @@ local from_file_pathes=(
     "/karabiner"
 )
 
-local to_file_pathes=(
+to_file_pathes=(
     "$HOME"
     "$HOME"
     "$HOME"

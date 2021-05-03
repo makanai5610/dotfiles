@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 function update_all() {
     case "${OSTYPE}" in
@@ -23,7 +23,7 @@ function update_all() {
 }
 
 function link_dotfiles() {
-    $DOTFILES_PATH/link.zsh
+    $DOTFILES_PATH/link.sh
 }
 
 function kc_stg() {

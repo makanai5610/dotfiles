@@ -18,14 +18,14 @@ pushd "$zshrc_dir" >/dev/null
 
 local dotfiles_dir=$(git rev-parse --show-toplevel)
 
-echo "source $dotfiles_dir/util/colorize.zsh"
-source $dotfiles_dir/util/colorize.zsh
-echo "source $dotfiles_dir/zsh/env.zsh"
-source $dotfiles_dir/zsh/env.zsh
-echo "source $dotfiles_dir/zsh/alias.zsh"
-source $dotfiles_dir/zsh/alias.zsh
-echo "source $dotfiles_dir/zsh/func.zsh"
-source $dotfiles_dir/zsh/func.zsh
+echo "source $dotfiles_dir/util/colorize.sh"
+source $dotfiles_dir/util/colorize.sh
+echo "source $dotfiles_dir/util/env.sh"
+source $dotfiles_dir/util/env.sh
+echo "source $dotfiles_dir/util/alias.sh"
+source $dotfiles_dir/util/alias.sh
+echo "source $dotfiles_dir/util/func.sh"
+source $dotfiles_dir/util/func.sh
 
 popd >/dev/null
 

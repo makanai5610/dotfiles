@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 alias ..='cd ..'
 alias cat='bat'
