@@ -2,15 +2,12 @@
 
 function install() {
     if [ "$1" = 'dry' ]; then
-        while read formula; do
-            echo "brew install $formula"
-        done <$DOTFILES_PATH/homebrew/formula.txt
+        /bin/cat Brewfile
     else
-        while read formula; do
-            brew install "$formula"
-        done <$DOTFILES_PATH/homebrew/formula.txt
+        brew bundle --no-lock --force
     fi
 }
 
-# if $1 is 'dry', dry run.
+pushd $DOTFILES_PATH/homebrew >/dev/null
 install $1
+popd >/dev/null

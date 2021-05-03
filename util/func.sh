@@ -4,9 +4,11 @@ function update_all() {
     case "${OSTYPE}" in
     darwin*)
         brew upgrade
+        brew autoremove
         brew cleanup
-        brew list --formula -1 >$DOTFILES_PATH/homebrew/formula.txt
-        brew list --cask -1 >$DOTFILES_PATH/homebrew/cask.txt
+        pushd $DOTFILES_PATH/homebrew >/dev/null
+        brew bundle dump --force
+        popd >/dev/null
         ;;
     linux*)
         sudo apt update
