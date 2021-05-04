@@ -4,7 +4,7 @@ function install() {
     if [ "$1" = 'dry' ]; then
         /bin/cat Brewfile
     else
-        brew bundle --no-lock --force
+        brew bundle --no-lock
     fi
 }
 
