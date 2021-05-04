@@ -7,7 +7,11 @@ function update_all() {
         brew autoremove
         brew cleanup
         pushd $DOTFILES_PATH/homebrew >/dev/null
+        mv Brewfile Brewfile.before
         brew bundle dump --force
+        (/bin/cat Brewfile.before Brewfile | sort | uniq) >Brewfile.after
+        rm Brewfile.before Brewfile
+        mv Brewfile.after Brewfile
         popd >/dev/null
         ;;
     linux*)
@@ -21,16 +25,19 @@ function update_all() {
     rustup update
     ghq_fetch
     ghq_update
-    ghq list >$DOTFILES_PATH/ghq/repo.txt
+    ghq list >>"$DOTFILES_PATH/ghq/repo.txt"
+    (/bin/cat "$DOTFILES_PATH/ghq/repo.txt" | grep -v -f "$DOTFILES_PATH/ghq/ignore_word.txt" | sort | uniq) >"$DOTFILES_PATH/ghq/repo.txt.copy"
+    rm "$DOTFILES_PATH/ghq/repo.txt"
+    mv "$DOTFILES_PATH/ghq/repo.txt.copy" "$DOTFILES_PATH/ghq/repo.txt"
 }
 
 function link_dotfiles() {
-    $DOTFILES_PATH/link.sh
+    "$DOTFILES_PATH/link.sh"
 }
 
 function kc_stg() {
     local config=$HOME/.kube/config/staging.yml
-    if [ -e $config ]; then
+    if [ -e "$config" ]; then
         export KUBECONFIG=$config
         echo_success "export KUBECONFIG=$KUBECONFIG\n"
     else
@@ -40,7 +47,7 @@ function kc_stg() {
 
 function kc_prd() {
     local config=$HOME/.kube/config/production.yml
-    if [ -e $config ]; then
+    if [ -e "$config" ]; then
         export KUBECONFIG=$config
         echo_success "export KUBECONFIG=$KUBECONFIG\n"
     else
@@ -50,7 +57,7 @@ function kc_prd() {
 
 function ksh() {
     if [ $# -eq 1 ]; then
-        kex -it -n $1 $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- sh
+        kex -it -n "$1" $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- sh
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
@@ -59,7 +66,7 @@ function ksh() {
 
 function krc() {
     if [ $# -eq 1 ]; then
-        kex -it -n $1 $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- bin/rails c
+        kex -it -n "$1" $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- bin/rails c
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
@@ -70,7 +77,7 @@ function ports() {
     if [ $# -eq 0 ]; then
         lsof -i -P
     elif [ $# -eq 1 ]; then
-        lsof -i -P | grep $1
+        lsof -i -P | grep "$1"
     else
         echo_failure 'argument number should be 1 or 0.\n'
     fi
@@ -99,8 +106,10 @@ function ghq_default() {
         cd $repo
         echo_success 'switch '
         echo "$repo"
-        local current_branch_name=$(git branch --show-current)
-        local default_branch_name=$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')
+        local current_branch_name
+        current_branch_name=$(git branch --show-current)
+        local default_branch_name
+        default_branch_name=$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')
         if [ "$current_branch_name" = "$default_branch_name" ]; then
             echo "    already on '$default_branch_name'"
         else
@@ -112,7 +121,8 @@ function ghq_default() {
 }
 
 function cdg() {
-    local repo=$(ghq list --full-path | peco)
+    local repo
+    repo=$(ghq list --full-path | peco)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -123,11 +133,12 @@ function cdg() {
     reset_style
     echo "$repo"
 
-    cd $repo
+    cd "$repo"
 }
 
 function cdp() {
-    local dir=$(/bin/ls -Fa -1 | grep / | peco)
+    local dir
+    dir=$(/bin/ls -Fa -1 | grep / | peco)
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -139,7 +150,7 @@ function cdp() {
     echo "$dir"
 
     while [ $(/bin/ls -F $dir | grep / | wc -l) != 0 ]; do
-        /bin/ls -Fa -1 $dir | grep / | peco | read s
+        /bin/ls -Fa -1 "$dir" | grep / | peco | read s
         if [ -z "$s" ]; then break; fi
         dir="$dir$s"
 
@@ -148,11 +159,12 @@ function cdp() {
         echo "$dir"
     done
 
-    cd $dir
+    cd "$dir"
 }
 
 function codeg() {
-    local repo=$(ghq list --full-path | peco)
+    local repo
+    repo=$(ghq list --full-path | peco)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -163,11 +175,12 @@ function codeg() {
     reset_style
     echo "$repo"
 
-    code $repo
+    code "$repo"
 }
 
 function batg() {
-    local dir=$(ghq list --full-path | peco)
+    local dir
+    dir=$(ghq list --full-path | peco)
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -178,8 +191,8 @@ function batg() {
     reset_style
     echo "$dir"
 
-    while [ -d $dir ]; do
-        /bin/ls -a -1 $dir | peco | read s
+    while [ -d "$dir" ]; do
+        /bin/ls -a -1 "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
@@ -193,11 +206,12 @@ function batg() {
         echo "$dir"
     done
 
-    bat $dir
+    bat "$dir"
 }
 
 function vimg() {
-    local dir=$(ghq list --full-path | peco)
+    local dir
+    dir=$(ghq list --full-path | peco)
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -208,8 +222,8 @@ function vimg() {
     reset_style
     echo "$dir"
 
-    while [ -d $dir ]; do
-        /bin/ls -a -1 $dir | peco | read s
+    while [ -d "$dir" ]; do
+        /bin/ls -a -1 "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
@@ -223,7 +237,7 @@ function vimg() {
         echo "$dir"
     done
 
-    vim $dir
+    vim "$dir"
 }
 
 function watch() {
@@ -232,7 +246,7 @@ function watch() {
         shift
         while true; do
             $@
-            sleep ${t}s
+            sleep "${t}s"
         done
     else
         echo_failure "should input number. got $1.\n"
@@ -240,7 +254,8 @@ function watch() {
 }
 
 function rubymine() {
-    local repo=$(ghq list --full-path | peco)
+    local repo
+    repo=$(ghq list --full-path | peco)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -254,7 +269,8 @@ function rubymine() {
 }
 
 function intellij() {
-    local repo=$(ghq list --full-path | peco)
+    local repo
+    repo=$(ghq list --full-path | peco)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -268,7 +284,8 @@ function intellij() {
 }
 
 function skim() {
-    local book=$(/bin/ls ~/books | peco)
+    local book
+    book=$(/bin/ls ~/books | peco)
     if [ -z "$book" ]; then
         echo_failure "canceled\n"
         reset_style

@@ -14,6 +14,7 @@ github.com/chrislusf/glow
 github.com/chronotope/chrono
 github.com/cloudflare/tableflip
 github.com/containerd/containerd
+github.com/coredns/coredns
 github.com/crossbeam-rs/crossbeam
 github.com/dapr/dapr
 github.com/deislabs/krustlet
@@ -48,6 +49,7 @@ github.com/karrybit/gopherdojo-studyroom
 github.com/karrybit/gorithm
 github.com/karrybit/now
 github.com/kubernetes/kubernetes
+github.com/mercari/gaurun
 github.com/mercari/go-conference-2021-spring-office-hour
 github.com/minio/minio
 github.com/nats-io/nats-server
