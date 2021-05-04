@@ -28,10 +28,12 @@ brew "imagemagick@6", link: true
 brew "jq"
 brew "kubectx"
 brew "kubernetes-cli"
+brew "kubernetes-cli", link: false
 brew "kustomize"
 brew "lazydocker"
 brew "libpq"
 brew "mysql"
+brew "mysql@5.7"
 brew "mysql@5.7", link: true
 brew "neovim"
 brew "node"
