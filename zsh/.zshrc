@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 local zshrc_dir=''
-if [ "$0" = "-zsh" -o "$0" = "zsh" -o "$0" = "/bin/zsh" ]; then
+if [ "$0" = "zsh" ] || [ "$0" = "-zsh" ] || [ "$0" = "/bin/zsh" ] || [ "$0" = "/usr/local/bin/zsh" ]; then
     zshrc_dir="$(dirname $(readlink $HOME/.zshrc))"
 elif [ -n "$(readlink $0)" ]; then
     zshrc_dir="$(dirname $(readlink $0))"
