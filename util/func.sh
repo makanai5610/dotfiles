@@ -7,11 +7,8 @@ function update_all() {
         brew autoremove
         brew cleanup
         pushd $DOTFILES_PATH/homebrew >/dev/null
-        mv Brewfile Brewfile.before
+        brew bundle install --no-lock
         brew bundle dump --force
-        (/bin/cat Brewfile.before Brewfile | sort | uniq) >Brewfile.after
-        rm Brewfile.before Brewfile
-        mv Brewfile.after Brewfile
         popd >/dev/null
         ;;
     linux*)
