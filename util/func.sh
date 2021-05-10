@@ -117,6 +117,25 @@ function ghq_default() {
     cd $current_directory
 }
 
+function path() {
+    local dir
+    dir=$(ghq list --full-path | peco)
+    if [ -z "$dir" ]; then
+        return
+    fi
+
+    while [ -d "$dir" ]; do
+        /bin/ls -Fa1 "$dir" | peco | read s
+        if [ -z "$s" ]; then
+            return
+        fi
+
+        dir="$dir/$s"
+    done
+
+    echo "$dir"
+}
+
 function cdg() {
     local repo
     repo=$(ghq list --full-path | peco)
