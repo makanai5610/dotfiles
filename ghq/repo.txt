@@ -43,6 +43,7 @@ github.com/hashicorp/raft
 github.com/hyperium/hyper
 github.com/istio/istio
 github.com/isucon/isucon10-qualify
+github.com/karrybit/algorusthms
 github.com/karrybit/dotfiles
 github.com/karrybit/go-std-package
 github.com/karrybit/gopherdojo-studyroom
