@@ -7,12 +7,7 @@ function update_all() {
         brew autoremove
         brew cleanup
         pushd $DOTFILES_PATH/homebrew >/dev/null
-        brew bundle install --no-lock
-        mv Brewfile Brewfile.before
-        brew bundle dump
-        mv Brewfile Brewfile.dumped
-        /bin/cat Brewfile.before Brewfile.dumped | sort | uniq >Brewfile
-        rm Brewfile.before Brewfile.dumped
+        brew bundle install --cleanup --no-lock
         popd >/dev/null
         ;;
     linux*)
@@ -34,6 +29,16 @@ function update_all() {
 
 function link_dotfiles() {
     "$DOTFILES_PATH/link.sh"
+}
+
+function sync_brewfile() {
+    pushd $DOTFILES_PATH/homebrew >/dev/null
+    mv Brewfile Brewfile.before
+    brew bundle dump
+    mv Brewfile Brewfile.dumped
+    /bin/cat Brewfile.before Brewfile.dumped | sort | uniq >Brewfile
+    rm Brewfile.before Brewfile.dumped
+    popd >/dev/null
 }
 
 function kc_stg() {
