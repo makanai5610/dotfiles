@@ -136,7 +136,7 @@ function path() {
     while [ -d "$dir" ]; do
         /bin/ls -Fa1 "$dir" | peco | read s
         if [ -z "$s" ]; then
-            return
+            break
         fi
 
         dir="$dir/$s"
@@ -163,7 +163,7 @@ function cdg() {
 
 function cdp() {
     local dir
-    dir=$(/bin/ls -Fa1 | grep / | peco)
+    dir=$(/bin/ls -Fa | grep / | peco)
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -174,8 +174,8 @@ function cdp() {
     reset_style
     echo "$dir"
 
-    while [ $(/bin/ls -F $dir | grep / | wc -l) != 0 ]; do
-        /bin/ls -Fa1 "$dir" | grep / | peco | read s
+    while [ $(/bin/ls -Fa $dir | grep / | wc -l) != 0 ]; do
+        /bin/ls -Fa "$dir" | grep / | peco | read s
         if [ -z "$s" ]; then break; fi
         dir="$dir$s"
 
@@ -217,7 +217,7 @@ function batg() {
     echo "$dir"
 
     while [ -d "$dir" ]; do
-        /bin/ls -Fa1 "$dir" | peco | read s
+        /bin/ls -a "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
@@ -248,7 +248,7 @@ function vimg() {
     echo "$dir"
 
     while [ -d "$dir" ]; do
-        /bin/ls -Fa1 "$dir" | peco | read s
+        /bin/ls -a "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
