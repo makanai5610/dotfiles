@@ -71,7 +71,6 @@ github.com/rust-lang/libc
 github.com/rust-lang/log
 github.com/rust-lang/pin-utils
 github.com/rust-lang/regex
-github.com/rust-lang/rust
 github.com/seanmonstar/reqwest
 github.com/serde-rs/json
 github.com/serde-rs/serde
