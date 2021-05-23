@@ -41,6 +41,10 @@ function sync_brewfile() {
     popd >/dev/null
 }
 
+function lg() {
+    la | grep "$1"
+}
+
 function kc_stg() {
     local config=$HOME/.kube/config/staging.yml
     if [ -e "$config" ]; then

@@ -1,38 +1,48 @@
 #!/bin/bash
 
-file_names=(
-    ".gitconfig"
-    ".vimrc"
-    ".p10k.zsh"
-    ".zshrc"
-    "move_word.json"
-)
-
-from_dir_pathes=(
-    "/git"
-    "/vim"
-    "/p10k"
-    "/zsh"
-    "/karabiner"
-)
-
-to_dir_pathes=(
-    "$HOME"
-    "$HOME"
-    "$HOME"
-    "$HOME"
-    "$HOME/.config/karabiner/assets/complex_modifications"
-)
-
-if [ ${#file_names[@]} != ${#from_dir_pathes[@]} ] || [ ${#from_dir_pathes[@]} != ${#to_dir_pathes[@]} ]; then
-    echo_failure "file_names, from_dir_pathes and to_dir_pathes count is not equal each other."
-    echo_failure "file_names=${#file_names[@]}, from_dir_pathes=${#from_dir_pathes[@]}, to_dir_pathes=${#to_dir_pathes[@]}"
-    return 1
-fi
-
-for i in $(seq 0 $((${#file_names[@]} - 1))); do
+function link_zsh() {
     echo_success 'link '
     reset_style
-    echo "${to_dir_pathes[$i]}/${file_names[$i]} -> $DOTFILES_PATH${from_dir_pathes[$i]}/${file_names[$i]}"
-    ln -si "$DOTFILES_PATH${from_dir_pathes[$i]}/${file_names[$i]}" "${to_dir_pathes[$i]}"
-done
+    echo "$HOME/.zshrc -> $DOTFILES_PATH/zsh/.zshrc"
+    ln -si "$DOTFILES_PATH/zsh/.zshrc" "$HOME"
+}
+
+function link_vim() {
+    echo_success 'link '
+    reset_style
+    echo "$HOME/.vimrc -> $DOTFILES_PATH/vim/.vimrc"
+    ln -si "$DOTFILES_PATH/vim/.vimrc" "$HOME"
+}
+
+function link_p10k() {
+    echo_success 'link '
+    reset_style
+    echo "$HOME/.p10k.zsh -> $DOTFILES_PATH/p10k/.p10k.zsh"
+    ln -si "$DOTFILES_PATH/p10k/.p10k.zsh" "$HOME"
+}
+
+function link_git() {
+    if [ ! -d "$XDG_CONFIG_HOME" ]; then
+        mkdir -p "$XDG_CONFIG_HOME"
+    fi
+    echo_success 'link '
+    reset_style
+    echo "$XDG_CONFIG_HOME/git -> $DOTFILES_PATH/git"
+    ln -si "$DOTFILES_PATH/git" "$XDG_CONFIG_HOME"
+}
+
+function link_karabiner() {
+    if [ ! -d "$XDG_CONFIG_HOME/karabiner/assets/complex_modifications" ]; then
+        mkdir -p "$XDG_CONFIG_HOME/karabiner/assets/complex_modifications"
+    fi
+    echo_success 'link '
+    reset_style
+    echo "$XDG_CONFIG_HOME/karabiner/assets/complex_modifications/move_word.json -> $DOTFILES_PATH/karabiner/move_word.json"
+    ln -si "$DOTFILES_PATH/karabiner/move_word.json" "$XDG_CONFIG_HOME/karabiner/assets/complex_modifications"
+}
+
+link_zsh
+link_vim
+link_p10k
+link_git
+link_karabiner
