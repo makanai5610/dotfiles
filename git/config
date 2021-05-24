@@ -1,5 +1,3 @@
-[core]
-excludesfile = ~/.gitignore_global
 [user]
 name = karrybit
 email = takumi.k.5610@gmail.com
