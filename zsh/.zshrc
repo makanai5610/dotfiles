@@ -37,6 +37,33 @@ source $GHQ_ROOT/github.com/romkatv/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+local xdg_dirs=(
+    $XDG_CONFIG_HOME/aws
+    $XDG_CONFIG_HOME/bundle
+    $XDG_CACHE_HOME/bundle
+    $XDG_DATA_HOME/bundle
+    $XDG_CONFIG_HOME/pg
+    $XDG_CACHE_HOME/pg
+    $XDG_DATA_HOME/cargo
+    $XDG_CACHE_HOME/ccache
+    $XDG_CONFIG_HOME/docker
+    $XDG_DATA_HOME/go
+    $XDG_DATA_HOME/gradle
+    $XDG_CONFIG_HOME/irb
+    $XDG_CONFIG_HOME/java
+    $XDG_CACHE_HOME/node-gyp
+    $XDG_CONFIG_HOME/npm
+    $XDG_DATA_HOME/gem
+    $XDG_CACHE_HOME/gem
+    $XDG_DATA_HOME/rustup
+    $XDG_DATA_HOME/vscode
+)
+for dir in $xdg_dirs; do
+    if [ ! -d $dir ]; then
+        mkdir $dir
+    fi
+done
+
 case "${OSTYPE}" in
     darwin*)
         source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
