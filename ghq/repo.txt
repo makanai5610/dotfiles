@@ -49,6 +49,7 @@ github.com/karrybit/go-std-package
 github.com/karrybit/gopherdojo-studyroom
 github.com/karrybit/gorithm
 github.com/karrybit/ietf-rfc-quiz
+github.com/karrybit/nand2tetris
 github.com/karrybit/now
 github.com/kubernetes/kubernetes
 github.com/mercari/gaurun
@@ -76,5 +77,6 @@ github.com/serde-rs/json
 github.com/serde-rs/serde
 github.com/tikv/tikv
 github.com/tokio-rs/tokio
+github.com/tsenart/vegeta
 github.com/uber-go/zap
 github.com/yewstack/yew
