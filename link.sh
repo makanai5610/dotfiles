@@ -41,8 +41,19 @@ function link_karabiner() {
     ln -si "$DOTFILES_PATH/karabiner/move_word.json" "$XDG_CONFIG_HOME/karabiner/assets/complex_modifications"
 }
 
+function link_iterm2() {
+    if [ ! -d "$XDG_CONFIG_HOME/iterm2" ]; then
+        mkdir -p "$XDG_CONFIG_HOME/iterm2"
+    fi
+    echo_success 'link '
+    reset_style
+    echo "$XDG_CONFIG_HOME/iterm2/theme.itermcolors -> $DOTFILES_PATH/iterm2/theme.itermcolors"
+    ln -si "$DOTFILES_PATH/iterm2/theme.itermcolors" "$XDG_CONFIG_HOME/iterm2"
+}
+
 link_zsh
 link_vim
 link_p10k
 link_git
 link_karabiner
+link_iterm2
