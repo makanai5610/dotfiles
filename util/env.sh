@@ -18,6 +18,7 @@ export GOPATH=$XDG_DATA_HOME/go
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export IRBRC=$XDG_CONFIG_HOME/irb/irbrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
+export MINIKUBE_HOME=$XDG_DATA_HOME/minikube
 export MYSQL_HISTFILE=$XDG_DATA_HOME/mysql_history
 export NODE_GYP_CACHE=$XDG_CACHE_HOME/node-gyp
 export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
