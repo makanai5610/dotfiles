@@ -269,6 +269,10 @@ function vimg() {
     vim "$dir"
 }
 
+function memod() {
+    memo delete "$(memo list --fullpath | peco | xargs basename)"
+}
+
 function watch() {
     if [[ "$1" =~ ^[0-9]+$ ]]; then
         local t=$1
