@@ -24,3 +24,9 @@ alias k='kubectl'
 alias kex='k exec'
 alias kg='k get'
 alias ked='k edit'
+
+# memo
+alias mmn='memo new'
+alias mml='memo list'
+alias mme='memo edit'
+alias mmc='memo cat'
