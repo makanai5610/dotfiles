@@ -269,7 +269,7 @@ function vimg() {
     vim "$dir"
 }
 
-function memod() {
+function mmd() {
     memo delete "$(memo list --fullpath | peco | xargs basename)"
 }
 
