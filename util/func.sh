@@ -136,14 +136,15 @@ function path() {
     if [ -z "$dir" ]; then
         return
     fi
+    dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -Fa1 "$dir" | peco | read s
+        /bin/ls -ap "$dir" | peco | read s
         if [ -z "$s" ]; then
             break
         fi
 
-        dir="$dir/$s"
+        dir="$dir$s"
     done
 
     echo "$dir"
@@ -219,16 +220,17 @@ function batg() {
     echo_success "selected "
     reset_style
     echo "$dir"
+    dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -a "$dir" | peco | read s
+        /bin/ls -ap "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
             return
         fi
 
-        dir="$dir/$s"
+        dir="$dir$s"
 
         echo_success "selected "
         reset_style
@@ -250,16 +252,17 @@ function vimg() {
     echo_success "selected "
     reset_style
     echo "$dir"
+    dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -a "$dir" | peco | read s
+        /bin/ls -ap "$dir" | peco | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
             return
         fi
 
-        dir="$dir/$s"
+        dir="$dir$s"
 
         echo_success "selected "
         reset_style
