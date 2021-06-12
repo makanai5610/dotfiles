@@ -37,6 +37,7 @@ brew "peco"
 brew "postgresql", restart_service: true
 brew "protobuf"
 brew "prototool"
+brew "pstree"
 brew "python@3.8"
 brew "rbenv"
 brew "redis"
