@@ -21,10 +21,6 @@ function update_all() {
     rustup update
     ghq_fetch
     ghq_update
-    ghq list >>"$DOTFILES_PATH/ghq/repo.txt"
-    (/bin/cat "$DOTFILES_PATH/ghq/repo.txt" | grep -v -f "$DOTFILES_PATH/ghq/ignore_word.txt" | sort | uniq) >"$DOTFILES_PATH/ghq/repo.txt.copy"
-    rm "$DOTFILES_PATH/ghq/repo.txt"
-    mv "$DOTFILES_PATH/ghq/repo.txt.copy" "$DOTFILES_PATH/ghq/repo.txt"
 }
 
 function link_dotfiles() {
@@ -110,24 +106,17 @@ function ghq_update() {
     done
 }
 
-function ghq_default() {
-    local current_directory=$PWD
-    for repo in $(ghq list --full-path); do
-        cd $repo
-        echo_success 'switch '
-        echo "$repo"
-        local current_branch_name
-        current_branch_name=$(git branch --show-current)
-        local default_branch_name
-        default_branch_name=$(git symbolic-ref refs/remotes/origin/HEAD | awk -F'[/]' '{print $NF}')
-        if [ "$current_branch_name" = "$default_branch_name" ]; then
-            echo "    already on '$default_branch_name'"
-        else
-            echo "    $current_branch_name -> $default_branch_name"
-            git switch $default_branch_name
-        fi
-    done
-    cd $current_directory
+function ghq_install() {
+    filepath=$1
+    if [ -z $1 ]; then
+        echo_failure "error"
+        reset_style
+        echo " must need filepath"
+    fi
+
+    while read repo; do
+        ghq get "https://$repo.git"
+    done <$filepath
 }
 
 function path() {
@@ -164,32 +153,6 @@ function cdg() {
     echo "$repo"
 
     cd "$repo"
-}
-
-function cdp() {
-    local dir
-    dir=$(/bin/ls -Fa | grep / | peco)
-    if [ -z "$dir" ]; then
-        echo_failure "canceled\n"
-        reset_style
-        return
-    fi
-
-    echo_success "selected "
-    reset_style
-    echo "$dir"
-
-    while [ $(/bin/ls -Fa $dir | grep / | wc -l) != 0 ]; do
-        /bin/ls -Fa "$dir" | grep / | peco | read s
-        if [ -z "$s" ]; then break; fi
-        dir="$dir$s"
-
-        echo_success "selected "
-        reset_style
-        echo "$dir"
-    done
-
-    cd "$dir"
 }
 
 function codeg() {
@@ -274,19 +237,6 @@ function vimg() {
 
 function mmd() {
     memo delete "$(memo list --fullpath | peco | xargs basename)"
-}
-
-function watch() {
-    if [[ "$1" =~ ^[0-9]+$ ]]; then
-        local t=$1
-        shift
-        while true; do
-            $@
-            sleep "${t}s"
-        done
-    else
-        echo_failure "should input number. got $1.\n"
-    fi
 }
 
 function rubymine() {

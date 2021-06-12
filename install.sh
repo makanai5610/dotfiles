@@ -8,4 +8,3 @@ darwin*)
 esac
 $DOTFILES_PATH/go/install.sh $1
 $DOTFILES_PATH/rust/install.sh $1
-$DOTFILES_PATH/ghq/install.sh $1
