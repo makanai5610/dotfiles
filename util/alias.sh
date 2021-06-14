@@ -8,14 +8,14 @@ alias ll='exa -lbghHimSuU@ --time-style long-iso --git -s Name'
 alias la='exa -labghHimSuU@ --time-style long-iso --git -s Name'
 alias grep='rg'
 alias find='fd'
-#alias ps='procs'
-#alias vim='nvim'
-#alias top='ytop'
-#alias top='bandwhich'
-#alias top='btm'
+alias vim='nvim'
+
+alias top='glances'
+alias du='ncdu'
 
 alias yq='yq eval -C'
 
+# interpreter
 alias gorepl='gore'
 alias rustrepl='evcxr'
 
