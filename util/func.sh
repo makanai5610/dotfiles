@@ -42,20 +42,19 @@ function lg() {
 }
 
 function kc_stg() {
-    local config=$HOME/.kube/config/staging.yml
-    if [ -e "$config" ]; then
-        export KUBECONFIG=$config
-        echo_success "export KUBECONFIG=$KUBECONFIG\n"
-    else
-        echo_failure "$config is not found.\n"
-    fi
+    link_kube_conf "$HOME/.kube/config_staging.yml"
 }
 
 function kc_prd() {
-    local config=$HOME/.kube/config/production.yml
+    link_kube_conf "$HOME/.kube/config_production.yml"
+}
+
+function link_kube_conf() {
+    local config=$1
     if [ -e "$config" ]; then
-        export KUBECONFIG=$config
-        echo_success "export KUBECONFIG=$KUBECONFIG\n"
+        ln -si "$config" "$HOME/.kube/config"
+        echo_success "link"
+        echo " $config -> $KUBECONFIG"
     else
         echo_failure "$config is not found.\n"
     fi
