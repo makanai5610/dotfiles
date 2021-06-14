@@ -32,6 +32,9 @@ export GEM_SPEC_CACHE=$XDG_CACHE_HOME/gem
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export VSCODE_PORTABLE=$XDG_DATA_HOME/vscode
 
+#
+export PATH=$PATH:/usr/local/sbin
+
 # protobuf
 export PATH=$PATH:/usr/local/opt/protobuf/bin
 
