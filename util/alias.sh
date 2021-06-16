@@ -11,7 +11,7 @@ alias find='fd'
 alias vim='nvim'
 
 alias top='glances'
-alias du='ncdu'
+alias du='ncdu -2er'
 
 alias yq='yq eval -C'
 
