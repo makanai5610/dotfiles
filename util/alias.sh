@@ -9,7 +9,6 @@ alias la='exa -labghHimSuU@ --time-style long-iso --git -s Name'
 alias grep='rg'
 alias find='fd'
 alias vim='nvim'
-
 alias top='glances'
 alias du='ncdu -2er'
 
@@ -30,3 +29,5 @@ alias mmn='memo new'
 alias mml='memo list'
 alias mme='memo edit'
 alias mmc='memo cat'
+
+alias man='_man'

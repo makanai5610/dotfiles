@@ -238,6 +238,12 @@ function mmd() {
     memo delete "$(memo list --fullpath | peco | xargs basename)"
 }
 
+function _man() {
+    export PAGER=$(which bat)
+    man $@
+    unset PAGER
+}
+
 function rubymine() {
     local repo
     repo=$(ghq list --full-path | peco)
