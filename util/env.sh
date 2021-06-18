@@ -34,7 +34,6 @@ export VSCODE_PORTABLE=$XDG_DATA_HOME/vscode
 
 #
 export PATH=$PATH:/usr/local/sbin
-export PAGER="$(which bat)"
 
 # protobuf
 export PATH=$PATH:/usr/local/opt/protobuf/bin
