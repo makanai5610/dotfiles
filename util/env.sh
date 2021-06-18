@@ -51,7 +51,7 @@ export PATH=$PATH:$JAVA_HOME/bin
 
 # rust
 export PATH=$PATH:$CARGO_HOME/bin
-export RUSTC_WRAPPER=$(which sccache)
+export RUSTC_WRAPPER = "$(which sccache)"
 
 # ruby
 [[ -d ~/.rbenv ]] &&
@@ -64,5 +64,5 @@ export RUSTC_WRAPPER=$(which sccache)
     eval "$(nodenv init -)"
 
 # ghq
-export GHQ_ROOT=$(ghq root)
-export DOTFILES_PATH=$(ghq list --full-path | grep karrybit/dotfiles)
+export GHQ_ROOT = "$(ghq root)"
+export DOTFILES_PATH = "$(ghq list --full-path | grep karrybit/dotfiles)"
