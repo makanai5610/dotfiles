@@ -38,6 +38,9 @@ export PATH=$PATH:/usr/local/sbin
 # protobuf
 export PATH=$PATH:/usr/local/opt/protobuf/bin
 
+# k8s
+export KUBECONFIG=$HOME/.kube/config
+
 # go
 export PATH=$PATH:$GOPATH/bin
 
