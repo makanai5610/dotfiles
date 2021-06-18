@@ -31,6 +31,7 @@ brew "kubernetes-cli", link: false
 brew "kustomize"
 brew "lazydocker"
 brew "libpq"
+brew "mas"
 brew "mysql"
 brew "mysql@5.7"
 brew "ncdu"
@@ -84,6 +85,12 @@ cask "sourcetree"
 cask "stoplight-studio"
 cask "visual-studio-code"
 cask "wireshark"
+mas "Keynote", id: 409183694
+mas "LINE", id: 539883307
+mas "Moom", id: 419330170
+mas "Numbers", id: 409203825
+mas "RunCat", id: 1429033973
+mas "Xcode", id: 497799835
 tap "grpc/grpc"
 tap "homebrew/bundle"
 tap "homebrew/cask"
