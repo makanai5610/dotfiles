@@ -1,9 +1,29 @@
 [user]
-name = karrybit
-email = takumi.k.5610@gmail.com
+    name = karrybit
+    email = takumi.k.5610@gmail.com
+
 [commit]
-template = ~/.stCommitMsg
+    template = ~/.stCommitMsg
+
 [pull]
-rebase = false
+    rebase = false
+
 [ghq]
-root = ~/work/ghq
+    root = ~/work/ghq
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+
+[interactive]
+    diffFilter = delta --color-only
