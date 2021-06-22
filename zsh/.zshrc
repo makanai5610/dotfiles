@@ -71,3 +71,6 @@ case "${OSTYPE}" in
         source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
         ;;
 esac
+
+source $XDG_CONFIG_HOME/broot/launcher/bash/br
+eval "$(zoxide init zsh)"
