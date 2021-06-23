@@ -239,6 +239,17 @@ function vimg() {
     vim "$dir"
 }
 
+function mmc() {
+    m=$(/bin/ls -F $XDG_CONFIG_HOME/memo/_posts | peco)
+    if [ -z "$m" ]; then
+        echo_failure "canceled\n"
+        reset_style
+        return
+    fi
+
+    glow "$XDG_CONFIG_HOME/memo/_posts/$m"
+}
+
 function mmd() {
     memo delete "$(memo list --fullpath | peco | xargs basename)"
 }
