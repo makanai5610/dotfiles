@@ -60,6 +60,11 @@ function link_kube_conf() {
     fi
 }
 
+function docker_run() {
+    image="$(docker image ls | tail -n +2 | peco | awk '{print $1 ":" $2}')"
+    docker run --rm -it "$image" "$1"
+}
+
 function ksh() {
     if [ $# -eq 1 ]; then
         kex -it -n "$1" "$(kg pod -n $1 | grep Running | head -n 1 | awk '{print $1}')" -- sh
