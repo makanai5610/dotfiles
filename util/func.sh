@@ -62,7 +62,7 @@ function link_kube_conf() {
 
 function ksh() {
     if [ $# -eq 1 ]; then
-        kex -it -n "$1" $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- sh
+        kex -it -n "$1" "$(kg pod -n $1 | grep Running | head -n 1 | awk '{print $1}')" -- sh
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
@@ -71,7 +71,7 @@ function ksh() {
 
 function krc() {
     if [ $# -eq 1 ]; then
-        kex -it -n "$1" $(kg pod -n $1 | grep Running | sed -n 1p | awk '{print $1}') -- bin/rails c
+        kex -it -n "$1" "$(kg pod -n $1 | grep Running | head -n 1 | awk '{print $1}')" -- bin/rails c
     else
         echo_failure 'must input namespace.\n'
         kg namespaces
