@@ -54,7 +54,6 @@ brew "swift-protobuf"
 brew "terraform"
 brew "tree"
 brew "v8@3.15"
-brew "xz"
 brew "yarn"
 brew "yq"
 brew "zenith"
@@ -72,7 +71,6 @@ cask "google-japanese-ime"
 cask "hex-fiend"
 cask "iterm2"
 cask "itsycal"
-cask "java"
 cask "karabiner-elements"
 cask "kindle"
 cask "notion"
@@ -86,7 +84,6 @@ cask "stoplight-studio"
 cask "visual-studio-code"
 cask "wireshark"
 mas "Keynote", id: 409183694
-mas "LINE", id: 539883307
 mas "Moom", id: 419330170
 mas "Numbers", id: 409203825
 mas "RunCat", id: 1429033973
