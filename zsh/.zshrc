@@ -72,5 +72,4 @@ case "${OSTYPE}" in
         ;;
 esac
 
-source $XDG_CONFIG_HOME/broot/launcher/bash/br
 eval "$(zoxide init zsh)"
