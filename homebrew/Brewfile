@@ -1,4 +1,4 @@
-grew "autoconf"
+brew "autoconf"
 brew "awscli"
 brew "azure-cli"
 brew "bandwhich"
