@@ -67,7 +67,7 @@ function docker_run() {
 
 function docker_run_mnt() {
     image="$(docker image ls | tail -n +2 | peco | awk '{print $1 ":" $2}')"
-    docker run -it --rm -v "$PWD":/mnt "$image" "$1"
+    docker run -it --rm -v "$PWD":/mnt "$image" bash
 }
 
 function ksh() {
