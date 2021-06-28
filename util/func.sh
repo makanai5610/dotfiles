@@ -62,7 +62,12 @@ function link_kube_conf() {
 
 function docker_run() {
     image="$(docker image ls | tail -n +2 | peco | awk '{print $1 ":" $2}')"
-    docker run --rm -it "$image" "$1"
+    docker run -it --rm "$image" "$1"
+}
+
+function docker_run_mnt() {
+    image="$(docker image ls | tail -n +2 | peco | awk '{print $1 ":" $2}')"
+    docker run -it --rm -v "$PWD":/mnt "$image" "$1"
 }
 
 function ksh() {
