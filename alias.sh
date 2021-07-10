@@ -33,7 +33,4 @@ alias ked='k edit'
 
 # memo
 alias mmn='memo new'
-alias mml='memo list'
 alias mme='memo edit'
-
-alias man='_man'

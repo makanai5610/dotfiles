@@ -46,7 +46,6 @@ brew "neovim"
 brew "node"
 brew "nodenv"
 brew "openjdk"
-brew "peco"
 brew "postgresql", restart_service: true
 brew "procs"
 brew "protobuf"
