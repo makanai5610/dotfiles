@@ -1,14 +1,14 @@
 #!/bin/bash
 
 function path() {
-    dir=$(ghq list --full-path | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
+    dir=$(ghq list --full-path | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
     if [ -z "$dir" ]; then
         return
     fi
     dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -ap "$dir" | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
+        /bin/ls -ap "$dir" | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
         if [ -z "$s" ]; then
             break
         fi
@@ -20,7 +20,7 @@ function path() {
 }
 
 function cdg() {
-    dir=$(ghq list --full-path | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
+    dir=$(ghq list --full-path | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -35,7 +35,7 @@ function cdg() {
 }
 
 function codeg() {
-    dir=$(ghq list --full-path | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
+    dir=$(ghq list --full-path | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -50,7 +50,7 @@ function codeg() {
 }
 
 function batg() {
-    dir=$(ghq list --full-path | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
+    dir=$(ghq list --full-path | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -63,7 +63,7 @@ function batg() {
     dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -ap "$dir" | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
+        /bin/ls -ap "$dir" | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style
@@ -81,7 +81,7 @@ function batg() {
 }
 
 function vimg() {
-    dir=$(ghq list --full-path | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
+    dir=$(ghq list --full-path | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi")
     if [ -z "$dir" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -94,7 +94,7 @@ function vimg() {
     dir="$dir/"
 
     while [ -d "$dir" ]; do
-        /bin/ls -ap "$dir" | fzf -x --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
+        /bin/ls -ap "$dir" | fzf -x --cycle --layout=reverse --preview="if [ -f $dir{} ]; then bat --color=always --style=header,grid,numbers $dir{}; fi" | read s
         if [ -z "$s" ]; then
             echo_failure "canceled\n"
             reset_style

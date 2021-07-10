@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function rubymine() {
-    repo=$(ghq list --full-path | fzf -x --layout=reverse)
+    repo=$(ghq list --full-path | fzf -x --cycle --layout=reverse)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -15,7 +15,7 @@ function rubymine() {
 }
 
 function intellij() {
-    repo=$(ghq list --full-path | fzf -x --layout=reverse)
+    repo=$(ghq list --full-path | fzf -x --cycle --layout=reverse)
     if [ -z "$repo" ]; then
         echo_failure "canceled\n"
         reset_style
@@ -29,7 +29,7 @@ function intellij() {
 }
 
 function skim() {
-    book=$(/bin/ls ~/books | fzf -x --layout=reverse)
+    book=$(/bin/ls ~/books | fzf -x --cycle --layout=reverse)
     if [ -z "$book" ]; then
         echo_failure "canceled\n"
         reset_style
