@@ -9,7 +9,7 @@ function kc_prd() {
 }
 
 function link_kube_conf() {
-    local config=$1
+    config=$1
     if [ -e "$config" ]; then
         ln -si "$config" "$HOME/.kube/config"
         echo_success "link"
@@ -20,19 +20,23 @@ function link_kube_conf() {
 }
 
 function ksh() {
-    if [ $# -eq 1 ]; then
-        kex -it -n "$1" "$(kg pod -n $1 | grep Running | head -n 1 | awk '{print $1}')" -- sh
-    else
-        echo_failure 'must input namespace.\n'
-        kg namespaces
+    namespace=$(kubectl config view --minify | grep namespace | awk '{print $2}')
+    if [ -z "$namespace" ]; then
+        echo_failure 'namespace is empty\n'
+        kubectl get namespaces
+        kubectl config get-contexts
+        return
     fi
+    kubectl exec -it -n "$namespace" "$(kubectl get pod -n $namespace | grep Running | head -n 1 | awk '{print $1}')" -- sh
 }
 
 function krc() {
-    if [ $# -eq 1 ]; then
-        kex -it -n "$1" "$(kg pod -n $1 | grep Running | head -n 1 | awk '{print $1}')" -- bin/rails c
-    else
-        echo_failure 'must input namespace.\n'
-        kg namespaces
+    namespace=$(kubectl config view --minify | grep namespace | awk '{print $2}')
+    if [ -z "$namespace" ]; then
+        echo_failure 'namespace is empty\n'
+        kubectl get namespaces
+        kubectl config get-contexts
+        return
     fi
+    kubectl exec -it -n "$namespace" "$(kubectl get pod -n $namespace | grep Running | head -n 1 | awk '{print $1}')" -- bin/rails c
 }
