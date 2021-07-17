@@ -65,3 +65,6 @@ export RUSTC_WRAPPER="$(which sccache)"
 # ghq
 export GHQ_ROOT="$(ghq root)"
 export DOTFILES_PATH="$(ghq list --full-path | grep karrybit/dotfiles)"
+
+# wasm
+export PATH=$PATH:$HOME/wabt/build

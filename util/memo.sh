@@ -8,7 +8,7 @@ function mmc() {
         return
     fi
 
-    /bin/cat "$m"
+    glow "$m"
 }
 
 function mmd() {
